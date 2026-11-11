@@ -23,8 +23,7 @@ buildDotnetModule rec {
 	dotnet-sdk = dotnetCorePackages.sdk_10_0;
 	nugetDeps = ./deps.json;
 
-	postBuild = ''
-		mkdir -p $out/lib/${pname}/
-		cp $src/${pname}/bin/${buildType}/${pname}.json $out/lib/${pname}/
+	postFixup = ''
+		cp ${pname}/bin/${buildType}/${runtimeId}/${pname}.json $out/lib/${pname}/
 	'';
 }
